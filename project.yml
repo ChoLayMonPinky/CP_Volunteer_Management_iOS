@@ -1,0 +1,68 @@
+name: CommonGround
+options:
+  bundleIdPrefix: dev.tintwym
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "1.0.0"
+    GENERATE_INFOPLIST_FILE: NO
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+configs:
+  Debug: debug
+  Release: release
+targets:
+  CommonGround:
+    type: application
+    platform: iOS
+    sources:
+      - path: CommonGround
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.tintwym.commonground
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_STRICT_CONCURRENCY: targeted
+        API_BASE_URL: "https://volunteer-backend-7m4w.onrender.com"
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+        Release:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: ""
+    entitlements:
+      path: CommonGround/CommonGround.entitlements
+      properties:
+        aps-environment: development
+    info:
+      path: CommonGround/Info.plist
+      properties:
+        CFBundleDisplayName: CommonGround
+        UILaunchScreen:
+          UIColorName: SplashBackground
+          UIImageName: BrandLogo
+          UIImageRespectsSafeAreaInsets: false
+        UIApplicationSupportsIndirectInputEvents: true
+        UIApplicationSupportsMultipleScenes: true
+        API_BASE_URL: "$(API_BASE_URL)"
+        NSCameraUsageDescription: CommonGround needs the camera to scan event check-in QR codes.
+        UIBackgroundModes:
+          - remote-notification
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+schemes:
+  CommonGround:
+    build:
+      targets:
+        CommonGround: all
+    run:
+      config: Debug
+    archive:
+      config: Release
